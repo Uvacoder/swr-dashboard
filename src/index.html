@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Mosaic HTML Demo - Home</title>
+</head>
+
+<body
+    class="font-inter antialiased bg-gray-100 text-gray-600"
+    :class="{ 'sidebar-expanded': sidebarExpanded }"
+    x-data="{ page: 'dashboard', sidebarOpen: false, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }"
+    x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))"
+>
+
+    <script>
+        if (localStorage.getItem('sidebar-expanded') == 'true') {
+            document.querySelector('body').classList.add('sidebar-expanded');
+        } else {
+            document.querySelector('body').classList.remove('sidebar-expanded');
+        }
+    </script>
+
+    <!-- Page wrapper -->
+    <div class="flex h-screen overflow-hidden">
+
+        <!-- Sidebar -->
+        <%= require('html-loader!./partials/sidebar.html') %>
+
+        <!-- Content area -->
+        <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+
+            <!-- Site header -->
+            <%= require('html-loader!./partials/header.html') %>
+            
+            <main>
+                <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+
+                    <%= require('html-loader!./partials/welcome-banner.html') %>
+                    <%= require('html-loader!./partials/dashboard-actions.html') %>
+
+                    <!-- Cards -->
+                    <div class="grid grid-cols-12 gap-6">
+
+                        <!-- Line chart (Acme Plus) -->
+                        <%= require('html-loader!./partials/dashboard-card-01.html') %>
+                        <!-- Line chart (Acme Advanced) -->
+                        <%= require('html-loader!./partials/dashboard-card-02.html') %>
+                        <!-- Line chart (Acme Professional) -->
+                        <%= require('html-loader!./partials/dashboard-card-03.html') %>
+                        <!-- Bar chart (Direct vs Indirect) -->
+                        <%= require('html-loader!./partials/dashboard-card-04.html') %>
+                        <!-- Line chart (Real Time Value) -->
+                        <%= require('html-loader!./partials/dashboard-card-05.html') %>
+                        <!-- Doughnut chart (Top Countries) -->
+                        <%= require('html-loader!./partials/dashboard-card-06.html') %>
+                        <!-- Table (Top Channels) -->
+                        <%= require('html-loader!./partials/dashboard-card-07.html') %>
+                        <!-- Line chart (Sales Over Time) -->
+                        <%= require('html-loader!./partials/dashboard-card-08.html') %>
+                        <!-- Stacked bar chart (Sales VS Refunds) -->
+                        <%= require('html-loader!./partials/dashboard-card-09.html') %>
+                        <!-- Card (Recent Activity) -->
+                        <%= require('html-loader!./partials/dashboard-card-10.html') %>
+                        <!-- Card (Income/Expenses) -->
+                        <%= require('html-loader!./partials/dashboard-card-11.html') %>
+
+                    </div>
+
+                </div>
+            </main>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
